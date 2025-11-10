@@ -73,6 +73,6 @@ def home_view(request,*args,**kwargs):
  return render(request,'base.html',context)
  
 
-def movie_detaile_view(request,*args,**kwargs):
- 
- render(request,'movie_detaile.html',{})
+def favoriteList_view(request,*args,**kwargs):
+ favoriteList=movie.objects.all()
+ return render(request,'movie_detaile.html',{'favoriteList':favoriteList})
