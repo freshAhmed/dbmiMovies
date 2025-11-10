@@ -1,0 +1,12 @@
+
+
+<div id="btn">
+ <span><a hx-post="/movie/add/" 
+           hx-vals='{"data":{{jsondata}}}'
+           hx-swap="outerHTML"
+           hx-target="#btn" 
+           hx-headers='{
+            "X-CSRFToken": "{{csrf_token}}" 
+           }'>add</a><h2> add {{data.Title}} {{data.Type}} to your favorite list  </h2></span> 
+           
+</div>

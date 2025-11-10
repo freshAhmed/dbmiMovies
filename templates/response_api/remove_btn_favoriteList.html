@@ -1,0 +1,14 @@
+
+
+<div id="#btn">
+<span><a hx-post="/movie/remove/" 
+           hx-vals='{"data":{{jsondata}}}'
+           hx-swap="outerHTML"
+           hx-target="#body" 
+           hx-headers='{
+            "X-CSRFToken": "{{csrf_token}}" 
+           }'>remove</a>
+            <h2>remove {{data.Title}} {{data.Type}} from your favorite list </h2>
+        </span>
+       
+</div>
