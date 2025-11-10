@@ -25,7 +25,7 @@ urlpatterns = [
 
     path('search/',views.search_view),
 
-    path('movies/favoriteList/',views.movie_detaile_view),
+    path('favoriteList/',views.favoriteList_view),
     path('movie/add/',views.add_movie_favorite_list),
     path('movie/remove/',views.remove_movie_favorite_list),
 
