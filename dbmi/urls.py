@@ -22,12 +22,8 @@ log=logging.getLogger(__name__)
 # log.info(views.home_view)
 urlpatterns = [
     path('',views.home_view),
-
     path('search/',views.search_view),
     path('movie/',include('movie.urls')),
-
     path('favoriteList/',views.favoriteList_view),
-
-
     path('admin/', admin.site.urls),
 ]
