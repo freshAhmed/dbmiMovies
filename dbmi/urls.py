@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path ,include
 from movie import views
 import logging
 log=logging.getLogger(__name__)
@@ -24,10 +24,9 @@ urlpatterns = [
     path('',views.home_view),
 
     path('search/',views.search_view),
+    path('movie/',include('movie.urls')),
 
     path('favoriteList/',views.favoriteList_view),
-    path('movie/add/',views.add_movie_favorite_list),
-    path('movie/remove/',views.remove_movie_favorite_list),
 
 
     path('admin/', admin.site.urls),
