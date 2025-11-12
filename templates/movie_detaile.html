@@ -9,11 +9,11 @@
   {%with jsondata|jsonify as data%}
 
  <h1>Title:{{data.Title}}</h1>
- <img src="{{data.Poster}}" alt="{{jsondata.Title}}"> 
+ <img src="{{data.Poster}}" alt="{{data.Title}}"> 
  <p>Plot:{{data.Plot}}</p>
  <p>Year:{{data.Year}}</p>
  <div id="btn">
- {% if favoriteList %}
+ {% if is_in_favoriteList %}
 
 
  {%include 'response_api/remove_btn_favoriteList.html' %}
@@ -30,16 +30,3 @@
 {%endif%}
 </div>
  {% endblock %}
- <script>
-    function parse_JSON(Json_string){
-     let json_object=null
-     try
-     {
-        console.log(Json_string)
-        json_object=JSON.parse(Json_string)
-     }catch(e){
-        return null
-     }
-     return json_object
-    }
- </script>
