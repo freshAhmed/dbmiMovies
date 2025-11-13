@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+
+
+
+
+{%block content%}
+{%if not request.user.is_authenticated%}
+<div>
+    <h1>login</h1>
+<form action="/login/" method="post">{%csrf_token%}
+<input type="text" name="username">
+<input type="password" name="password">
+<button type="submit">login</button>
+</form>
+</div>
+{%else%}
+<P>you need to logout first</P>
+  <button hx-get="/logout/" hx-swap="outerHTML" hx-target="#body">logout</button>
+
+{%endif%}
+{%endblock%}

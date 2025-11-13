@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+
+
+
+{%block content%}
+{%if request.user.is_authenticated%}
+<div>
+   
+        <p> are you sure do want to logout ?</p>
+<form action="/logout/" method="post">{%csrf_token%}
+ 
+<button type="submit">yes logout</button>
+
+</form>
+
+</div>
+{%else%}
+<p>you need to login first before to logging out !!</p>
+{%endif%}
+{%endblock%}
