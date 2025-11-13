@@ -5,6 +5,7 @@ import requests
 import pprint
 from .models import movie
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 import json
 log=logging.getLogger(__name__)
 
@@ -32,6 +33,8 @@ def search_view(request,*args,**kwargs):
  
   return render(request,'movie_detaile.html',context)
  return favoriteList_view(request)
+
+@login_required
 def addMovieFavoriteList(request,*args,**kwargs):
  context={}
 
@@ -57,8 +60,8 @@ def addMovieFavoriteList(request,*args,**kwargs):
    return render(request,'response_api/remove_btn_favoriteList.html',context)
   
  else :
-  return redirect('/')
-
+  return redirect('/favoriteList/')
+@login_required
 def removeMovieFavoriteList(request,*args,**kwargs):
  context={}
  if request.method=='POST':
@@ -75,7 +78,7 @@ def removeMovieFavoriteList(request,*args,**kwargs):
 def home_view(request,*args,**kwargs):
  context={}  
  return render(request,'base.html',context)
-
+@login_required
 def favoriteList_view(request,*args,**kwargs):
  favoriteList=movie.objects.all()
  return render(request,'favoriteList.html',{'favoriteList':favoriteList})
