@@ -15,7 +15,7 @@
 </div>
 {%else%}
 <P>you need to logout first</P>
-  <button hx-get="/logout/" hx-swap="outerHTML" hx-target="#body">logout</button>
+  <button hx-get="/logout/?next=/login/" hx-swap="outerHTML" hx-target="#body">logout</button>
 
 {%endif%}
 {%endblock%}
