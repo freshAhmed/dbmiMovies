@@ -1,31 +1,45 @@
 from django.shortcuts import render ,redirect
 from django.contrib.auth import login ,authenticate,logout
+from django.contrib.auth.forms import UserCreationForm
 import logging
 
 log=logging.getLogger(__name__)
 # Create your views here.
 
 def login_view(request,*args,**kwargs):
-  
+    context={}
     if request.method=="POST":
      username=request.POST.get('username')
      password=request.POST.get('password')
      user=authenticate(username=username,password=password)
-     
      if user is not None:
         login(request,user)
         return redirect('/favoriteList/')
      else:
-        log.info('account is not authenticate')
-
+        context['message']='error the username and password invalid try agin'
     return render(request,'accounts/login.html',{})
     
 
 def logout_view(request,*args,**kwargs):
-    log.info(request.user.is_authenticated)
-    if request.user is not None:
-     logout(request)
-     return render(request,'accounts/login.html',{})
+
+ if request.user is not None:
+  logout(request)
+  if 'next'in request.GET:
+   next_url=request.GET.get('next')
+   return redirect(next_url)
+  
+ return render(request,'accounts/login.html',{})
+    
 
 def register_view(request,*args,**kwargs):
-    return render(request,'accounts/register.html',{})
+    form =UserCreationForm(request.POST or None)
+    context={
+      'form':form
+    } 
+ 
+    if form.is_valid():
+      data=form.clean()
+      form.save()
+      context['form']=UserCreationForm()
+      return redirect('/login/')
+    return render(request,'accounts/register.html',context)
