@@ -1,8 +1,9 @@
 from django.shortcuts import render ,redirect
 from django.contrib.auth import login ,authenticate,logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 import logging
-
+from movie.models import favoriteList
 log=logging.getLogger(__name__)
 # Create your views here.
 
@@ -36,10 +37,12 @@ def register_view(request,*args,**kwargs):
     context={
       'form':form
     } 
- 
     if form.is_valid():
       data=form.clean()
       form.save()
+      user=User.objects.filter(username=data['username'])
+      favlist=favoriteList(author=user[0])
+      favlist.save()
       context['form']=UserCreationForm()
       return redirect('/login/')
     return render(request,'accounts/register.html',context)
