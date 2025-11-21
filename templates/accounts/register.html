@@ -2,13 +2,15 @@
 
 
 
-{% block content %}
+{% block content %} 
 {%if not request.user.is_authenticated%}
 <form action="/register/" method="POST">
     {{form.as_p}}
     {%csrf_token%}
    <button type="submit">register</button>
 </form>
+<p>already  have account 
+ <button hx-get="/login/" hx-swap="outerHTML" hx-target="#body">login</button></p>
 {%else%}
  <p>you need first logout before register</p>
  <button hx-get="/logout/?next=/register/" hx-swap="outerHTML" hx-target="#body">logout</button>
