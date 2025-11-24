@@ -34,7 +34,6 @@ def search_view(request,*args,**kwargs):
                                         |Q(Title=str(data.get('Title')).lower())
                                         |Q(Title=str(data.get('Title')).upper()))
                                         &(Q(favoritelist=favlist)))
-   log.info(movielist)
    movie=movielist[0] if len(movielist) >0 else None
    
    context['is_in_favoriteList']=True if movie else False
