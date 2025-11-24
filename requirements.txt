@@ -4,3 +4,5 @@ sqlparse==0.5.3
 requests
 django-cors-headers
 django-dotenv
+gunicorn
+psycopg2-binary
